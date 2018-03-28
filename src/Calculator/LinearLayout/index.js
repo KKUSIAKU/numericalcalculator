@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Style from "./style.scss";
+
 const wrapping = {};
 
 function LinearLayout(props) {

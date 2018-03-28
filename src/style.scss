@@ -1,0 +1,31 @@
+/*****
+ new calculator
+
+***/
+
+
+#app{
+  height:100vh;
+}
+
+#calculator-frame {
+  width:330px; 
+  height: 550px;
+  background-color:red;
+};
+
+#frame{
+  display: flex;
+  flex-direction: column;
+  width:200px;
+ }
+
+.linear-layout{
+  display:flex; 
+  flex-wrap: nowrap; 
+
+  .linear-layout-item{
+    min-width: 50px;
+    min-height: 50px;
+  }
+}

@@ -12,7 +12,6 @@ import {
   Display
 } from "../utils";
 
-import style from "./style.scss";
 
 const { Zero, One, Two, Three, Four, Five, Six, Seven, Eigth, Nine } = Digits;
 const {
