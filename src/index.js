@@ -8,6 +8,9 @@ import store  from "./calculator/CalculatorEngine/store.js";
 //import CalculatorFrame from "./CalculatorFrame";
 import Calculator from "./Calculator";
 
+import style from "./style.scss";
+
+
 render(
   <Provider store={store}>
     <Calculator />
