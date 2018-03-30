@@ -1,7 +1,7 @@
 import { bindActionCreators } from "redux";
 import { connect} from "react-redux"; 
 import React from "react";
-import * as actions from "../../CalculatorEngine/actions.js";
+import { actions } from "../../CalculatorEngine";
 import LinearLayout from "../../LinearLayout";
 import {
   Digits,

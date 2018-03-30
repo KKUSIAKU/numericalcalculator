@@ -4,6 +4,8 @@
 import { combine } from "react-redux";
 import maths from "./maths.js";
 import getOperators from "./getOperators"; 
+import toPostFix from "./infixToPostFix";
+
 
 function changeLastChar(char) {
   return char;
@@ -36,9 +38,7 @@ function evaluateEpxresion(expresion) {
 }
 
 function expression(state = {}, action) {
-  let expression; 
-  let operatorRegExp; 
-  let operators; 
+  let expression, operatorRegExp, operators, postFixExpress; 
   switch (action.type) {
     case "UPDATE-EXPRESSION":
       if (state.expression === "0") {
@@ -58,11 +58,9 @@ function expression(state = {}, action) {
       // eval could make thing simple for basic case here 
       // but want to explore something more realistic without create such external script with eval 
       //determine which operation to make 
-      expression = state.expression;
-      console.log(expression);
-      operatorRegExp = RegExp(/[+-]/);
-      operators = expression.match(operatorRegExp); 
-      console.log("operators",operators);
+      postFixExpress = toPostFix(state.expression);
+
+      console.log("operators",postFixExpress);
 
       break;
     default:

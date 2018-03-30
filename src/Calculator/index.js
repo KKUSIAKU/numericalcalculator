@@ -1,6 +1,6 @@
 //import CalculatorFrame from "./CalculatorFrame"; 
 import React from "react"; 
-import Models from "./Models";
+import Models from "../Models";
 import CALCULATOR_MODELS from "../constant.js";
 
 class Calculator extends React.Component {
