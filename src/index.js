@@ -4,7 +4,7 @@ import { render } from "react-dom";
 // obliged to break down the import from CalculatorEngine module 
 // to avoid multiple module import that differ only in casing warning !
 // Need to import actions 
-import store  from "./calculator/CalculatorEngine/store.js";
+import { store } from "./CalculatorEngine";
 //import CalculatorFrame from "./CalculatorFrame";
 import Calculator from "./Calculator";
 
