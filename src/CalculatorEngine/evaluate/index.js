@@ -23,8 +23,8 @@ function _evaluateArray(expression, separator) {
 
 
   // this works !
-  var r = /(\d+)(\.\d+)?([$])(\d+)(\.\d+)?([$])([+*x/])/;
-  var rr = new RegExp("(\\d+)(\\.\\d+)?([$])(\\d+)(\\.\\d+)?([$])([+*x/])");
+  var r = /(-?\d+)(\.\d+)?([$])(\d+)(\.\d+)?([$])([+\-x^/])/;
+  var rr = new RegExp("(\\d+)(\\.\\d+)?([$])(\\d+)(\\.\\d+)?([$])([+-x/])","g");
   var count = 15;
 
 console.log("*****************",sp.test(result));
@@ -33,7 +33,7 @@ console.log("*****************",sp.test(result));
     count = count -1;
     console.log(result);
 
-    result = result.replace(rr, function () {
+    result = result.replace(r, function () {
       //return "£££";
 
       let _args = [...arguments],
@@ -42,15 +42,12 @@ console.log("*****************",sp.test(result));
         operator;
       //return "££££";
 
-      
-
       firstOperand = parseFloat(_args.slice(1, 3).join(""));
       secondOperand = parseFloat(_args.slice(4, 6).join(""));
       operator = _args[7];
 
       switch (operator) {
-        case "+":
-         
+        case "+":  
           return maths.add(firstOperand, secondOperand).toString();
         case "-":
           return maths.substract(firstOperand, secondOperand).toString();
@@ -58,6 +55,8 @@ console.log("*****************",sp.test(result));
           return maths.multiply(firstOperand, secondOperand).toString();
         case "/":
           return maths.divide(firstOperand, secondOperand).toString();
+        case "^":
+          return Math.pow(firstOperand,secondOperand).toString();
         default:
           throw new TypeError(`In Evaluate: ${operator} operation is not valid or not defined`);
       }
