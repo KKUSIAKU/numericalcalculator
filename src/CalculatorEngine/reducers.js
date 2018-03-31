@@ -5,7 +5,7 @@ import { combine } from "react-redux";
 import maths from "./maths.js";
 import getOperators from "./getOperators"; 
 import toPostFix from "./infixToPostFix";
-
+import evaluate from "./evaluate";
 
 function changeLastChar(char) {
   return char;
@@ -59,35 +59,13 @@ function expression(state = {}, action) {
       // but want to explore something more realistic without create such external script with eval 
       //determine which operation to make 
       postFixExpress = toPostFix(state.expression);
-
-      console.log("operators",postFixExpress);
-
-      break;
+      return  updateObject (state, {
+        expression:evaluate(postFixExpress)
+      });
     default:
       return state;
   }
-  /*if (action.type == "UPDATE-EXPRESSION") {
-    if (state.expression === "0") {
-      return updateObject(state, 
-        {
-          lastChar:action.expression.toString(),
-          expression: action.expression.toString(),
-        });
-    } else {
-      //return Object.assign({}, state, { expression: state.expression + action.expression.toString() });
-      return updateObject(state, 
-        {
-          lastChar:action.expression.toString(),
-          expression: state.expression + action.expression.toString(),
-        });
-    }
 
-  }
-  if (action.type == "EVALUATE") {
-    let result = evaluateEpxresion(state.expression);
-    return updateObject(state, {expression:result});
-  }*/
-  return state;
 }
 
 export default expression; 
