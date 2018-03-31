@@ -1,7 +1,14 @@
 
-function toPostfix(infix) {
+/**@function toPostFix 
+ * 
+ * Transform an infix expression into postfix expression
+ * @param {string} infix - An infix expression.
+ * @returns {array} A postifx representation of infix in an array.
+*/
+
+function toPostFix(infix) {
   // Convert infixItems to postfix here, and return result.
-  var itemsRegx = /(\d+|[+-\/*()^])(\.\d+)?/g,
+  var itemsRegx = /(\d+|[+-\/x()^])(\.\d+)?/g,
     infixItems = [],
     postfix = [],
     operators = [],
@@ -23,7 +30,7 @@ function toPostfix(infix) {
       switch (infixItems[i]) {
         case "+":
         case "-":
-          if (["^", "/", "*"].includes(operators[_ln - 1])) {
+          if (["^", "/", "x"].includes(operators[_ln - 1])) {
             opt = operators.pop();
             while (!["+", "-"].includes(opt)) {
               postfix.push(opt);
@@ -34,7 +41,7 @@ function toPostfix(infix) {
           operators.push(infixItems[i]);
           break;
 
-        case "*":
+        case "x":
           if (["^", "/"].includes(operators[_ln - 1])) {
             postfix.push(operators.pop());
           }
@@ -42,7 +49,7 @@ function toPostfix(infix) {
           break;
 
         case "/":
-          if (["^", "*"].includes(operators[_ln - 1])) {
+          if (["^", "x"].includes(operators[_ln - 1])) {
             postfix.push(operators.pop());
           }
           operators.push(infixItems[i]);
@@ -50,7 +57,7 @@ function toPostfix(infix) {
           break;
 
         case "^":
-          if (["/", "*"].includes(operators[_ln - 1])) {
+          if (["/", "x"].includes(operators[_ln - 1])) {
             postfix.push(operators.pop());
           }
           operators.push(infixItems[i]);
@@ -82,5 +89,5 @@ function toPostfix(infix) {
   return postfix;
 }
 
-export default toPostfix;
+export default toPostFix;
 
