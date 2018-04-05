@@ -7,7 +7,8 @@
     "prod": "webpack --config webpack.prod.js",
     "test":"jest",
     "topostfix":"jest _test_/CalculatorEngine/toPostFix.test.js",
-    "evaluate":"jest _test_/CalculatorEngine/evaluate.test.js"
+    "evaluate":"jest _test_/CalculatorEngine/evaluate.test.js",
+    "maths":"jest  _test_/CalculatorEngine/maths.test.js"
   },
   "author": "",
   "license": "ISC",
