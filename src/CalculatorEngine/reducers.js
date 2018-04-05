@@ -2,7 +2,7 @@
 // http://rosettacode.org/wiki/Parsing/Shunting-yard_algorithm
 
 import { combine } from "react-redux";
-import maths from "./maths.js";
+import maths from "./maths";
 import getOperators from "./getOperators"; 
 import toPostFix from "./infixToPostFix";
 import evaluate from "./evaluate";

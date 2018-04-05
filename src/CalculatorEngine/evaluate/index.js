@@ -8,7 +8,7 @@
  */
 
 var getOperators = require("../getOperators");
-var maths = require("../maths.js");
+var maths = require("../maths");
 
 
 function _evaluateArray(expression, separator) {
@@ -17,30 +17,19 @@ function _evaluateArray(expression, separator) {
     regx = new RegExp("(\\d+)(\\.\\d+)?([$])(\\d+)(\\.\\d+)?([$])([+*-\\/])", "g"),
     sp = /[$]/g;
 
-
-  //result =  _exp.match(regx);
-  //var r = new RegExp("(\\d+)([$])","g");
-
-
-  // this works !
   var r = /(-?\d+)(\.\d+)?([$])(\d+)(\.\d+)?([$])([+\-x^/])/;
   var rr = new RegExp("(\\d+)(\\.\\d+)?([$])(\\d+)(\\.\\d+)?([$])([+-x/])","g");
   var count = 15;
 
-console.log("*****************",sp.test(result));
  // count--;
   while (count) {
     count = count -1;
-    console.log(result);
-
     result = result.replace(r, function () {
-      //return "£££";
-
+    
       let _args = [...arguments],
         firstOperand,
         secondOperand,
         operator;
-      //return "££££";
 
       firstOperand = parseFloat(_args.slice(1, 3).join(""));
       secondOperand = parseFloat(_args.slice(4, 6).join(""));
@@ -56,7 +45,7 @@ console.log("*****************",sp.test(result));
         case "/":
           return maths.divide(firstOperand, secondOperand).toString();
         case "^":
-          return Math.pow(firstOperand,secondOperand).toString();
+          return maths.pow(firstOperand,secondOperand).toString();
         default:
           throw new TypeError(`In Evaluate: ${operator} operation is not valid or not defined`);
       }
@@ -64,19 +53,16 @@ console.log("*****************",sp.test(result));
     });
 
   }
- 
-  console.log(result);
+
 
   return result;
 }
 
-function evaluate(expression, separator = "$", count = 0) {
+function evaluate(expression, separator = "$") {
 
   var result = null;
-  //console.log(expression)
-
   result = _evaluateArray(expression, separator);
-  return parseFloat(result);
+  return maths.round(parseFloat(result),11);
 
 }
 
