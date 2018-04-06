@@ -16,9 +16,10 @@
 #display-frame {
   padding: 15px 0; }
   #display-frame #display {
-    height: 50px;
+    border: 2px solid red;
     font-size: 25px;
-    border: 2px solid red; }
+    height: 50px;
+    text-align: right; }
 /*****
  new calculator
 

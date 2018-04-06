@@ -7,7 +7,7 @@ const initialState = {
   ce_count: 0,
   equal_state: false,
   operators: ["+", "-", "/", "*"],
-  equal: "=",
+  equal: false,
   expression:"0",
 };
 
