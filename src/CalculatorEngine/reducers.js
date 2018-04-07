@@ -71,6 +71,7 @@ function expression(state = {}, action) {
       // but want to explore something more realistic without create such external script with eval 
       //determine which operation to make 
       postFixExpress = toPostFix(state.expression);
+      console.log(postFixExpress);
       return updateObject(state, {
         expression: evaluate(postFixExpress),
         equal: true,
