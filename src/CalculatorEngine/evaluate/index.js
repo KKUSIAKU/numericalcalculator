@@ -62,7 +62,7 @@ function evaluate(expression, separator = "$") {
 
   var result = null;
   result = _evaluate(expression, separator);
-  return maths.round(parseFloat(result),11);
+  return maths.round(parseFloat(result),11).toString();
 
 }
 
