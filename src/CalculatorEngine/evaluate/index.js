@@ -11,7 +11,7 @@ var getOperators = require("../getOperators");
 var maths = require("../maths");
 
 
-function _evaluateArray(expression, separator) {
+function _evaluate(expression, separator) {
   var result = expression.join("$"),
     _exp = expression.join("$"),
     regx = new RegExp("(\\d+)(\\.\\d+)?([$])(\\d+)(\\.\\d+)?([$])([+*-\\/])", "g"),
@@ -61,8 +61,8 @@ function _evaluateArray(expression, separator) {
 function evaluate(expression, separator = "$") {
 
   var result = null;
-  result = _evaluateArray(expression, separator);
-  return maths.round(parseFloat(result),11);
+  result = _evaluate(expression, separator);
+  return maths.round(parseFloat(result),11).toString();
 
 }
 

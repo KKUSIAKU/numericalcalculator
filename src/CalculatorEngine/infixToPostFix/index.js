@@ -8,14 +8,15 @@
 
 function toPostFix(infix) {
   // Convert infixItems to postfix here, and return result.
-  var itemsRegx = /(\d+|[+-\/x()^])(\.\d+)?/g,
+  
+  var itemsRegx = /(\d+|[+-\/x()^])(\.\d+)?/g,// regex need to be fixed, not correct though working
     infixItems = [],
     postfix = [],
     operators = [],
     _ln,
     ln;
 
-
+  // split the input string into number, operator and parentheses
   infixItems = infix.match(itemsRegx);
   ln = infixItems.length;
 
@@ -32,13 +33,19 @@ function toPostFix(infix) {
         case "-":
           if (["^", "/", "x"].includes(operators[_ln - 1])) {
             opt = operators.pop();
-            while (!["+", "-"].includes(opt)) {
+            _ln--;
+            while (_ln & !["+", "-"].includes(opt) ) {
               postfix.push(opt);
               opt = operators.pop();
+              _ln--;
             }
             postfix.push(opt);
+          } else if(["+","-"].includes(operators[_ln-1])){
+            postfix.push(operators.pop());
           }
+
           operators.push(infixItems[i]);
+
           break;
 
         case "x":
@@ -69,7 +76,8 @@ function toPostFix(infix) {
 
         case ")":
           char = operators.pop();
-          while (char !== "(") {
+          
+          while (char !== "(" ) {
             postfix.push(char);
             char = operators.pop();
           }

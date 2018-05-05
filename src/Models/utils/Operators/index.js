@@ -23,6 +23,10 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ controller: actions.updateExpression }, dispatch);
 };
 
+const mapOfNegate =(dispatch) => {
+  return bindActionCreators({controller:actions.negate}, dispatch);
+};
+
 // unfortunately, many browser don't support MathML yet 
 // https://caniuse.com/#search=math
 
@@ -49,7 +53,7 @@ Operators.Divide =connect(
 
 Operators.Negate = connect(
   mapStateToProps.bind(null, { operator:  <math><mo>&#177;</mo></math>,symbol:"negate" }),
-  mapDispatchToProps
+  mapOfNegate
 )(createButton);
 
 Operators.Sqrt = connect(

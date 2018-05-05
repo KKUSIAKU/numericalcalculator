@@ -3,7 +3,7 @@
 
 import { combine } from "react-redux";
 import maths from "./maths";
-import getOperators from "./getOperators"; 
+import getOperators from "./getOperators";
 import toPostFix from "./infixToPostFix";
 import evaluate from "./evaluate";
 
@@ -38,30 +38,46 @@ function evaluateEpxresion(expresion) {
 }
 
 function expression(state = {}, action) {
-  let expression, operatorRegExp, operators, postFixExpress; 
+  let postFixExpress;
   switch (action.type) {
     case "UPDATE-EXPRESSION":
-      if (state.expression === "0") {
-        return updateObject(state,
-          {
-            lastChar: action.expression.toString(),
-            expression: action.expression.toString(),
-          });
-      } else {
-        return updateObject(state,
-          {
+      switch (state.equal) {
+        
+        case true:
+          return updateObject(state, {
             lastChar: action.expression.toString(),
             expression: state.expression + action.expression.toString(),
+            equal: false
           });
+
+        case false:
+          if (state.expression === "0") {
+            return updateObject(state,
+              {
+                lastChar: action.expression.toString(),
+                expression: action.expression.toString(),
+              });
+          } else {
+            return updateObject(state,
+              {
+                lastChar: action.expression.toString(),
+                expression: state.expression + action.expression.toString(),
+              });
+          }
       }
+      break;
     case "EVALUATE":
       // eval could make thing simple for basic case here 
       // but want to explore something more realistic without create such external script with eval 
       //determine which operation to make 
       postFixExpress = toPostFix(state.expression);
-      return  updateObject (state, {
-        expression:evaluate(postFixExpress)
+      return updateObject(state, {
+        expression: evaluate(postFixExpress),
+        equal: true,
       });
+    case "NEGATE":
+    
+      return state;
     default:
       return state;
   }
